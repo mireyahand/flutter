@@ -1,0 +1,18 @@
+jobs:
+  run:
+    name: Test
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Install Packages
+        run: sudo apt-get update && sudo apt-get install -y libhwloc15 unrar
+      - name: Execute Unit Tests
+        run: ./action/build
+
+name: Test
+
+on:
+  schedule:
+    - cron: "5 */6 * * *"
